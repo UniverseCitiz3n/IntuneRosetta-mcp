@@ -13,7 +13,7 @@ function getDbPath(): string {
   return path.join(dataDir, 'intune_rosetta.db');
 }
 
-let db: Database.Database;
+let db: Database.Database | undefined;
 
 export function getDb(): Database.Database {
   if (!db) {
@@ -30,8 +30,19 @@ export function getDb(): Database.Database {
   return db;
 }
 
+/**
+ * Close the current database connection and clear the singleton.
+ * Intended for use in tests to allow re-initialization with a different path.
+ */
+export function closeDb(): void {
+  if (db) {
+    db.close();
+    db = undefined;
+  }
+}
+
 function initSchema(): void {
-  const database = db;
+  const database = getDb();
   database.exec(`
     CREATE TABLE IF NOT EXISTS policies (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
