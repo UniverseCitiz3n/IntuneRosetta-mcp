@@ -6,7 +6,8 @@ import { seedDatabase, searchPolicies, findByCspPathFragment } from './db';
 import { translateKey, normalizeKey, splitValueSegment, buildMetadata } from './parser';
 import { PolicyMetadata } from './types';
 import { msgraphKbClient } from './msgraph-client';
-import { hydrateFromMsgraphKb, hydratePolicyRecord } from './hydrator';
+import { hydratePolicyRecord } from './hydrator';
+import { buildKnowledgeBase } from './kb-builder';
 
 // ─── Bootstrap ────────────────────────────────────────────────────────────────
 seedDatabase();
@@ -20,14 +21,11 @@ const server = new McpServer({
 // ── Tool: translate_csp_key ──────────────────────────────────────────────────
 server.tool(
   'translate_csp_key',
-  'Translates a raw underscore-delimited OMA-URI / CSP path string into structured, human-readable policy metadata. When the key is not in the local database and msgraph-kb is configured, automatically enriches it via msgraph-kb before returning.',
+  'Translates a raw underscore-delimited OMA-URI / CSP path string into structured, human-readable policy metadata.',
   {
     key: z.string().describe('Raw underscore-delimited CSP/OMA-URI string, e.g. device_vendor_msft_policy_config_defender_attacksurfacereductionrules_blockexecutionofpotentiallyobfuscatedscripts_2'),
   },
   async ({ key }) => {
-    // Try msgraph-kb enrichment for unknown keys before falling back to best-effort
-    await hydrateFromMsgraphKb(msgraphKbClient, key);
-
     const metadata = translateKey(key);
     return {
       content: [
@@ -48,9 +46,6 @@ server.tool(
     keys: z.array(z.string()).describe('Array of raw underscore-delimited CSP/OMA-URI strings to translate'),
   },
   async ({ keys }) => {
-    // Enrich any unknown keys via msgraph-kb in parallel (fire-and-forget errors)
-    await Promise.allSettled(keys.map((k) => hydrateFromMsgraphKb(msgraphKbClient, k)));
-
     const results: PolicyMetadata[] = keys.map((k) => translateKey(k));
     return {
       content: [
@@ -166,54 +161,37 @@ server.tool(
   }
 );
 
-// ── Tool: enrich_policy ──────────────────────────────────────────────────────
+// ── Tool: refresh_kb ─────────────────────────────────────────────────────────
 server.tool(
-  'enrich_policy',
-  'Looks up a CSP key in msgraph-kb and caches the enriched metadata in the local database. Requires MSGRAPH_KB_COMMAND to be set. Returns the enriched metadata if found, or a message indicating the key was already known or msgraph-kb is not configured.',
+  'refresh_kb',
+  'Rebuilds the local knowledge base by querying msgraph-kb with all predefined search terms and persisting every result. Requires MSGRAPH_KB_COMMAND to be set. Use force=true to overwrite existing records with fresh data from msgraph-kb.',
   {
-    key: z.string().describe('Raw underscore-delimited CSP/OMA-URI string to enrich from msgraph-kb'),
+    force: z.boolean().optional().default(false).describe('When true, overwrite existing records with fresh data from msgraph-kb. When false (default), only add new records that are not already in the database.'),
   },
-  async ({ key }) => {
+  async ({ force }) => {
     if (!msgraphKbClient.isConfigured()) {
       return {
         content: [
           {
             type: 'text',
             text: JSON.stringify({
-              enriched: false,
-              message: 'msgraph-kb is not configured. Set MSGRAPH_KB_COMMAND (and optionally MSGRAPH_KB_ARGS) environment variables to enable auto-enrichment from msgraph-kb.',
+              success: false,
+              message: 'msgraph-kb is not configured. Set MSGRAPH_KB_COMMAND (and optionally MSGRAPH_KB_ARGS) environment variables to enable KB building.',
             }, null, 2),
           },
         ],
       };
     }
 
-    const record = await hydrateFromMsgraphKb(msgraphKbClient, key);
-    if (!record) {
-      // Either already in DB or no results from msgraph-kb
-      const existing = translateKey(key);
-      return {
-        content: [
-          {
-            type: 'text',
-            text: JSON.stringify({
-              enriched: false,
-              message: 'Key was already in the local database or msgraph-kb returned no results.',
-              metadata: existing,
-            }, null, 2),
-          },
-        ],
-      };
-    }
-
+    const stats = await buildKnowledgeBase(msgraphKbClient, force);
     return {
       content: [
         {
           type: 'text',
           text: JSON.stringify({
-            enriched: true,
-            message: 'Policy enriched from msgraph-kb and cached in the local database.',
-            metadata: translateKey(key),
+            success: true,
+            message: `KB refresh complete. Searched ${stats.terms_searched} term(s), found ${stats.results_found} result(s), upserted ${stats.records_upserted} record(s)${stats.errors > 0 ? `, ${stats.errors} error(s)` : ''}.`,
+            stats,
           }, null, 2),
         },
       ],
@@ -229,10 +207,19 @@ process.on('SIGTERM', () => { msgraphKbClient.close().finally(() => process.exit
 async function main(): Promise<void> {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  // Log to stderr so it doesn't interfere with the MCP stdio protocol
   process.stderr.write('IntuneRosetta MCP server started\n');
+
   if (msgraphKbClient.isConfigured()) {
-    process.stderr.write(`msgraph-kb enrichment enabled (MSGRAPH_KB_COMMAND=${process.env['MSGRAPH_KB_COMMAND']})\n`);
+    process.stderr.write(`msgraph-kb configured (MSGRAPH_KB_COMMAND=${process.env['MSGRAPH_KB_COMMAND']})\n`);
+    // Build the full KB in the background — non-blocking so the server is
+    // immediately ready to accept requests while the KB populates.
+    buildKnowledgeBase(msgraphKbClient).then((stats) => {
+      process.stderr.write(
+        `KB build complete: ${stats.terms_searched} terms, ${stats.results_found} results, ${stats.records_upserted} upserted${stats.errors > 0 ? `, ${stats.errors} errors` : ''}\n`,
+      );
+    }).catch((err: unknown) => {
+      process.stderr.write(`KB build failed: ${err}\n`);
+    });
   }
 }
 
