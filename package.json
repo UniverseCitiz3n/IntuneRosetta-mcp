@@ -1,0 +1,36 @@
+{
+  "name": "intunerosetta-mcp",
+  "version": "1.0.0",
+  "description": "MCP server that translates raw Microsoft Graph / OMA-URI CSP path strings into structured, human-readable policy metadata",
+  "main": "dist/index.js",
+  "bin": {
+    "intunerosetta-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch",
+    "test": "node --test 'dist/tests/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UniverseCitiz3n/IntuneRosetta-mcp.git"
+  },
+  "keywords": ["mcp", "intune", "csp", "oma-uri", "microsoft-graph"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/UniverseCitiz3n/IntuneRosetta-mcp/issues"
+  },
+  "homepage": "https://github.com/UniverseCitiz3n/IntuneRosetta-mcp#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "better-sqlite3": "^12.8.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  }
+}

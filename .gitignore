@@ -1,0 +1,4 @@
+node_modules/
+dist/
+intune_rosetta.db
+*.db
