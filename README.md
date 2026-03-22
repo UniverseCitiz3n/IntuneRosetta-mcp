@@ -1,6 +1,6 @@
 # IntuneRosetta-mcp
 
-A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that **translates raw OMA-URI / CSP path strings into structured, human-readable Intune policy metadata** — search 800+ pre-built policy records, resolve human-readable names to CSP keys, and hydrate the local knowledge base from [msgraph-kb](https://github.com/UniverseCitiz3n/msgraph-kb-mcp), all from your AI assistant.
+A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that **translates raw OMA-URI / CSP path strings into structured, human-readable Intune policy metadata** — search 800+ pre-built policy records and resolve human-readable names to CSP keys, all from your AI assistant.
 
 ## Quick start
 
@@ -99,7 +99,6 @@ In your repository's **Settings → Copilot → MCP servers**, add:
 | `batch_translate` | `keys` (string[]) | Translates an array of CSP path strings in one call |
 | `search_policy` | `query` (string), `limit` (number, optional) | Fuzzy keyword search across the policy database by name, description, category, or CSP path fragment |
 | `resolve_to_csp` | `query` (string), `limit` (number, optional) | Resolves a human-readable policy name or keyword to matching CSP key(s) and full metadata |
-| `hydrate_db` | `policies` (object[]) | Stores one or more policy metadata records directly into the local SQLite database |
 | `refresh_kb` | `force` (boolean, optional) | Rebuilds the local KB by querying msgraph-kb with all predefined search terms. Requires `MSGRAPH_KB_COMMAND` to be set |
 
 ---
