@@ -1,6 +1,150 @@
 {
   "records": [
     {
+      "normalized_key": "ade_activatecellulardata",
+      "name": "A D E Activate Cellular Data",
+      "description": "Activates cellular data during Apple Automated Device Enrollment.",
+      "csp_path": "./enrollment/ade/activateCellularData",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_authenticationmethod",
+      "name": "A D E Authentication Method",
+      "description": "Authentication method used during Apple Automated Device Enrollment.",
+      "csp_path": "./enrollment/ade/authenticationMethod",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_lockedenrollment",
+      "name": "A D E Locked Enrollment",
+      "description": "Prevents the user from removing the MDM profile during Apple ADE enrollment.",
+      "csp_path": "./enrollment/ade/lockedEnrollment",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_maximumcachedusers",
+      "name": "A D E Maximum Cached Users",
+      "description": "Maximum number of users that can be cached on a shared Apple device.",
+      "csp_path": "./enrollment/ade/maximumCachedUsers",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_maximumsecondsafterscreenlockbeforepasswordisrequired",
+      "name": "A D E Max Seconds After Screen Lock Before Password Required",
+      "description": "Number of seconds after screen lock before password is required on ADE devices.",
+      "csp_path": "./enrollment/ade/maximumSecondsAfterScreenLockBeforePasswordIsRequired",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_modernauth_awaitfinalconfiguration",
+      "name": "A D E Modern Auth Await Final Configuration",
+      "description": "Wait for final configuration during modern authentication ADE enrollment.",
+      "csp_path": "./enrollment/ade/modernAuth/awaitFinalConfiguration",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_requiresharedipadtemporarysessiononly",
+      "name": "A D E Require Shared i Pad Temporary Session Only",
+      "description": "Require temporary session only on shared iPad enrolled via ADE.",
+      "csp_path": "./enrollment/ade/requireSharedIPadTemporarySessionOnly",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_setupassistant_appleid",
+      "name": "A D E Setup Assistant Apple I D",
+      "description": "Configures the Apple ID setup assistant pane during ADE enrollment.",
+      "csp_path": "./enrollment/ade/setupAssistant/appleId",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_setupassistant_diagnosticsdata",
+      "name": "A D E Setup Assistant Diagnostics Data",
+      "description": "Configures the diagnostics data setup assistant pane during ADE enrollment.",
+      "csp_path": "./enrollment/ade/setupAssistant/diagnosticsData",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_setupassistant_locationservices",
+      "name": "A D E Setup Assistant Location Services",
+      "description": "Configures the location services setup assistant pane during ADE enrollment.",
+      "csp_path": "./enrollment/ade/setupAssistant/locationServices",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_setupassistant_passcode",
+      "name": "A D E Setup Assistant Passcode",
+      "description": "Configures the passcode setup assistant pane during ADE enrollment.",
+      "csp_path": "./enrollment/ade/setupAssistant/passcode",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_setupassistant_privacy",
+      "name": "A D E Setup Assistant Privacy",
+      "description": "Configures the privacy setup assistant pane during ADE enrollment.",
+      "csp_path": "./enrollment/ade/setupAssistant/privacy",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_setupassistant_restore",
+      "name": "A D E Setup Assistant Restore",
+      "description": "Configures the restore setup assistant pane during ADE enrollment.",
+      "csp_path": "./enrollment/ade/setupAssistant/restore",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_setupassistant_screentime",
+      "name": "A D E Setup Assistant Screen Time",
+      "description": "Configures the screen time setup assistant pane during ADE enrollment.",
+      "csp_path": "./enrollment/ade/setupAssistant/screenTime",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_setupassistant_siri",
+      "name": "A D E Setup Assistant Siri",
+      "description": "Configures the Siri setup assistant pane during ADE enrollment.",
+      "csp_path": "./enrollment/ade/setupAssistant/siri",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "ade_setupassistant_softwareupdate",
+      "name": "A D E Setup Assistant Software Update",
+      "description": "Configures the software update setup assistant pane during ADE enrollment.",
+      "csp_path": "./enrollment/ade/setupAssistant/softwareUpdate",
+      "category": "Apple ADE Enrollment",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-program-enroll-ios",
+      "value_map": "{}"
+    },
+    {
       "normalized_key": "bitlocker_allowstandarduserencryption",
       "name": "Allow Standard User Encryption",
       "description": "Allows Admin to enforce \"RequireDeviceEncryption\" policy for scenarios where policy is pushed while current logged on user is non-admin/standard user.                          \"AllowStandardUserEncryption\" policy is tied to \"AllowWarningForOtherDiskEncryption\" policy  being set to \"0\", i.e, Silent encryption is enforced.                          If \"AllowWarningForOtherDiskEncryption\" is not set, or is set to \"1\", \"RequireDeviceEncryption\" policy will not try to encrypt drive(s) if a standard us",
@@ -505,6 +649,1212 @@
       "value_map": "{}"
     },
     {
+      "normalized_key": "device_vendor_msft_policy_config_abovelock_allowcortanaabovelock",
+      "name": "Allow Cortana Above Lock",
+      "description": "Specifies whether or not the user can interact with Cortana using speech while the system is locked.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/AboveLock/AllowCortanaAboveLock",
+      "category": "Above Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_abovelock_allowtoasts",
+      "name": "Allow Toasts Above Lock",
+      "description": "Specifies whether to allow toast notifications above the device lock screen.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/AboveLock/AllowToasts",
+      "category": "Above Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_accounts_allowaddingnonmicrosoftaccountsmanually",
+      "name": "Allow Adding Non- Microsoft Accounts Manually",
+      "description": "Specifies whether user is allowed to add non-MSA email accounts.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Accounts/AllowAddingNonMicrosoftAccountsManually",
+      "category": "Accounts",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_accounts_allowmicrosoftaccountconnection",
+      "name": "Allow Microsoft Account Connection",
+      "description": "Specifies whether the user is allowed to use an MSA account for non-email related connection authentication and services.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Accounts/AllowMicrosoftAccountConnection",
+      "category": "Accounts",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_accounts_allowmicrosoftaccountsigninassistant",
+      "name": "Allow Microsoft Account Sign- In Assistant",
+      "description": "Allows IT Admins the ability to disable the Microsoft Account Sign-In Assistant (wlidsvc) NT service.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Accounts/AllowMicrosoftAccountSignInAssistant",
+      "category": "Accounts",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_authentication_allowaadpasswordreset",
+      "name": "Allow A A D Password Reset",
+      "description": "Specifies whether password reset is enabled for AAD accounts.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Authentication/AllowAadPasswordReset",
+      "category": "Authentication",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_authentication_allowsecondaryauthenticationdevice",
+      "name": "Allow Secondary Authentication Device",
+      "description": "Allows secondary authentication devices to work with Windows.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Authentication/AllowSecondaryAuthenticationDevice",
+      "category": "Authentication",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_authentication_enablepasswordlessexperience",
+      "name": "Enable Passwordless Experience",
+      "description": "Specifies whether connected users on AADJ devices receive a Passwordless experience on Windows.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Authentication/EnablePasswordlessExperience",
+      "category": "Authentication",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_authentication_enablewebsignin",
+      "name": "Enable Web Sign- In",
+      "description": "Specifies whether web-based sign-in is allowed for signing in to Windows.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Authentication/EnableWebSignIn",
+      "category": "Authentication",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_authentication_preferredaadtenantdomainname",
+      "name": "Preferred A A D Tenant Domain Name",
+      "description": "Specifies the preferred domain among available domains in the AAD tenant.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Authentication/PreferredAadTenantDomainName",
+      "category": "Authentication",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_camera_allowcamera",
+      "name": "Allow Camera",
+      "description": "Disables or enables the camera.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Camera/AllowCamera",
+      "category": "Camera",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_cellular_letappsaccesscellulardata",
+      "name": "Let Apps Access Cellular Data",
+      "description": "This policy setting specifies whether Windows apps can access cellular data.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Cellular/LetAppsAccessCellularData",
+      "category": "Cellular",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_cellular_showappcellularaccessui",
+      "name": "Show App Cellular Access U I",
+      "description": "Configures the visibility of the link to the per-application cellular access control page.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Cellular/ShowAppCellularAccessUI",
+      "category": "Cellular",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_controlpolicyconflict_mdmwinsovergp",
+      "name": "M D M Wins Over G P",
+      "description": "If set to 1 then any MDM policy that is set that has an equivalent GP policy will result in GP service blocking the setting of the policy by GP MMC. Setting the value to 0 (zero) or deleting the policy will remove the GP policy blocks restore the saved GP policies.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/ControlPolicyConflict/MDMWinsOverGP",
+      "category": "Windows Policy",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_dataprotection_allowdirectmemoryaccess",
+      "name": "Allow Direct Memory Access",
+      "description": "This policy setting allows you to block direct memory access (DMA) for all hot pluggable PCI downstream ports until a user logs into Windows.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DataProtection/AllowDirectMemoryAccess",
+      "category": "Data Protection",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_doabsolutemaxcachesize",
+      "name": "D O Absolute Max Cache Size",
+      "description": "Specifies the maximum size in GB of Delivery Optimization cache. This policy overrides the MaxCacheSize policy.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOAbsoluteMaxCacheSize",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_doallowvpnpeercaching",
+      "name": "D O Allow V P N Peer Caching",
+      "description": "Specifies whether the device, with an active VPN connection, is allowed to participate in P2P or not.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOAllowVPNPeerCaching",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_docachehost",
+      "name": "D O Cache Host",
+      "description": "Specifies one or more Microsoft Connected Cache servers that will be used by your client(s). One or more values can be added as either fully qualified domain names (FQDN) or IP addresses. To add multiple values, separate each FQDN or IP address by commas.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOCacheHost",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_docachehostsource",
+      "name": "D O Cache Host Source",
+      "description": "Specifies how your client(s) can discover Microsoft Connected Cache servers dynamically.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOCacheHostSource",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dodelaybackgrounddownloadfromhttp",
+      "name": "D O Delay Background Download From Http",
+      "description": "For background downloads that use P2P, specifies the time to wait before starting to download from the HTTP source.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DODelayBackgroundDownloadFromHttp",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dodelaycacheserverfallbackbackground",
+      "name": "D O Delay Cache Server Fallback Background",
+      "description": "For background downloads that use a cache server, specifies the time to wait before falling back to download from the original HTTP source.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DODelayCacheServerFallbackBackground",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dodelaycacheserverfallbackforeground",
+      "name": "D O Delay Cache Server Fallback Foreground",
+      "description": "For foreground downloads that use a cache server, specifies the time to wait before falling back to download from the original HTTP source.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DODelayCacheServerFallbackForeground",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dodelayforegrounddownloadfromhttp",
+      "name": "D O Delay Foreground Download From Http",
+      "description": "For foreground downloads that use P2P, specifies the time to wait before starting to download from the HTTP source.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DODelayForegroundDownloadFromHttp",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dodisallowcacheserverdownloadsonvpn",
+      "name": "D O Disallow Cache Server Downloads On V P N",
+      "description": "Specify to disallow downloads from Microsoft Connected Cache servers when the device has an active VPN connection. By default, the button is 'Not Set'. This means the device is allowed to download from Microsoft Connected Cache when the device has an active VPN connection. To block these downloads, turn the button on to 'Enabled'.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DODisallowCacheServerDownloadsOnVPN",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dodownloadmode",
+      "name": "D O Download Mode",
+      "description": "Specifies the method that Delivery Optimization can use to download content on behalf of various Microsoft products.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DODownloadMode",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dogroupid",
+      "name": "D O Group Id",
+      "description": "Specifies an arbitrary group ID that the device belongs to. A GUID must be used.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOGroupId",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dogroupidsource",
+      "name": "D O Group Id Source",
+      "description": "Specifies the source of group ID used for peer selection.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOGroupIdSource",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_domaxbackgrounddownloadbandwidth",
+      "name": "D O Max Background Download Bandwidth",
+      "description": "Specifies the maximum background download bandwidth in KiloBytes/second that the device can use across all concurrent download activities using Delivery Optimization.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMaxBackgroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_domaxcacheage",
+      "name": "D O Max Cache Age",
+      "description": "Specifies the maximum time in seconds that each file is held in the Delivery Optimization cache after downloading successfully.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMaxCacheAge",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_domaxcachesize",
+      "name": "D O Max Cache Size",
+      "description": "Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of the available drive space.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMaxCacheSize",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_domaxdownloadbandwidth",
+      "name": "D O Max Download Bandwidth",
+      "description": "This policy specifies the maximum foreground download bandwidth in KiloBytes/second that the device can use across all concurrent download activities using Delivery Optimization.\\r\\nThe default value 0 (zero) means that Delivery Optimization dynamically adjusts to use the available bandwidth for downloads.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMaxDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_domaxforegrounddownloadbandwidth",
+      "name": "D O Max Foreground Download Bandwidth",
+      "description": "Specifies the maximum foreground download bandwidth in KiloBytes/second that the device can use across all concurrent download activities using Delivery Optimization.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMaxForegroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_domaxuploadbandwidth",
+      "name": "D O Max Upload Bandwidth",
+      "description": "Specifies the minimum download QoS (Quality of Service or speed) in KiloBytes/sec for background downloads. This policy affects the blending of peer and HTTP sources. Delivery Optimization complements the download from the HTTP source to achieve the minimum QoS value set.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMaxUploadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dominbackgroundqos",
+      "name": "D O Min Background Qos",
+      "description": "Specifies the minimum download QoS (Quality of Service) in KiloBytes/sec for background downloads.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMinBackgroundQos",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dominbatterypercentageallowedtoupload",
+      "name": "D O Min Battery Percentage Allowed To Upload",
+      "description": "Specifies the minimum battery level required for uploading to peers, while on battery power.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMinBatteryPercentageAllowedToUpload",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_domindisksizeallowedtopeer",
+      "name": "D O Min Disk Size Allowed To Peer",
+      "description": "Specifies the required minimum total disk size in GB for the device to use P2P.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMinDiskSizeAllowedToPeer",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dominfilesizetocache",
+      "name": "D O Min File Size To Cache",
+      "description": "Specifies the minimum content file size in MB eligible to use P2P.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMinFileSizeToCache",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dominramallowedtopeer",
+      "name": "D O Min R A M Allowed To Peer",
+      "description": "Specifies the minimum total RAM size in GB required to use P2P.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMinRAMAllowedToPeer",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_domodifycachedrive",
+      "name": "D O Modify Cache Drive",
+      "description": "Specifies the drive that Delivery Optimization should use for its cache. The drive location can be specified using environment variables, drive letter or using a full path.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOModifyCacheDrive",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_domonthlyuploaddatacap",
+      "name": "D O Monthly Upload Data Cap",
+      "description": "Specifies the maximum bytes in GB that Delivery Optimization is allowed to upload to Internet peers in each calendar month.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOMonthlyUploadDataCap",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dopercentagemaxbackgroundbandwidth",
+      "name": "D O Percentage Max Background Bandwidth",
+      "description": "Specifies the maximum background download bandwidth that Delivery Optimization uses across all concurrent download activities as a percentage of available download bandwidth.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOPercentageMaxBackgroundBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dopercentagemaxforegroundbandwidth",
+      "name": "D O Percentage Max Foreground Bandwidth",
+      "description": "Specifies the maximum foreground download bandwidth that Delivery Optimization uses across all concurrent download activities as a percentage of available download bandwidth.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOPercentageMaxForegroundBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dorestrictpeerselectionby",
+      "name": "D O Restrict Peer Selection By",
+      "description": "Specifies to restrict peer selection using the selected method, in addition to the DownloadMode policy.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DORestrictPeerSelectionBy",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dosethourstolimitbackgrounddownloadbandwidth",
+      "name": "Set Hours To Limit Background Download Bandwidth",
+      "description": "Specifies the maximum background download bandwidth that Delivery Optimization uses during and outside business hours across all concurrent download activities as a percentage of available download bandwidth.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOSetHoursToLimitBackgroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dosethourstolimitbackgrounddownloadbandwidth_sethourstolimitbackgrounddownloadbandwidthfrom",
+      "name": "Set Hours To Limit Background Download Bandwidth From",
+      "description": "",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOSetHoursToLimitBackgroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dosethourstolimitbackgrounddownloadbandwidth_sethourstolimitbackgrounddownloadbandwidthin",
+      "name": "Set Hours To Limit Background Download Bandwidth In",
+      "description": "",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOSetHoursToLimitBackgroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dosethourstolimitbackgrounddownloadbandwidth_sethourstolimitbackgrounddownloadbandwidthout",
+      "name": "Set Hours To Limit Background Download Bandwidth Out",
+      "description": "",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOSetHoursToLimitBackgroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dosethourstolimitbackgrounddownloadbandwidth_sethourstolimitbackgrounddownloadbandwidthto",
+      "name": "Set Hours To Limit Background Download Bandwidth To",
+      "description": "",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOSetHoursToLimitBackgroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dosethourstolimitforegrounddownloadbandwidth",
+      "name": "Set Hours To Limit Foreground Download Bandwidth",
+      "description": "Specifies the maximum foreground download bandwidth that Delivery Optimization uses during and outside business hours across all concurrent download activities as a percentage of available download bandwidth.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOSetHoursToLimitForegroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dosethourstolimitforegrounddownloadbandwidth_sethourstolimitforegrounddownloadbandwidthfrom",
+      "name": "Set Hours To Limit Foreground Download Bandwidth From",
+      "description": "",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOSetHoursToLimitForegroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dosethourstolimitforegrounddownloadbandwidth_sethourstolimitforegrounddownloadbandwidthin",
+      "name": "Set Hours To Limit Foreground Download Bandwidth In",
+      "description": "",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOSetHoursToLimitForegroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dosethourstolimitforegrounddownloadbandwidth_sethourstolimitforegrounddownloadbandwidthout",
+      "name": "Set Hours To Limit Foreground Download Bandwidth Out",
+      "description": "",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOSetHoursToLimitForegroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dosethourstolimitforegrounddownloadbandwidth_sethourstolimitforegrounddownloadbandwidthto",
+      "name": "Set Hours To Limit Foreground Download Bandwidth To",
+      "description": "",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOSetHoursToLimitForegroundDownloadBandwidth",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_deliveryoptimization_dovpnkeywords",
+      "name": "D O Vpn Keywords",
+      "description": "Specifies one or more keywords used to recognize VPN connections. To add multiple keywords, separate each by a comma.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeliveryOptimization/DOVpnKeywords",
+      "category": "Delivery Optimization",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_accountlockoutpolicy",
+      "name": "Account Lockout Policy",
+      "description": "Account lockout threshold, duration, and reset settings.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/AccountLockoutPolicy",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_allowsimpledevicepassword",
+      "name": "Allow Simple Device Password",
+      "description": "Specifies whether PINs or passwords such as 1111 or 1234 are allowed.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/AllowSimpleDevicePassword",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_alphanumericdevicepasswordrequired",
+      "name": "Alphanumeric Device Password Required",
+      "description": "Determines the type of PIN or password required.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/AlphanumericDevicePasswordRequired",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_devicepasswordenabled",
+      "name": "Device Password Enabled",
+      "description": "Specifies whether device lock is enabled.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/DevicePasswordEnabled",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_devicepasswordexpiration",
+      "name": "Device Password Expiration",
+      "description": "Specifies when the password expires (in days). 0 - Passwords do not expire.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/DevicePasswordExpiration",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_devicepasswordhistory",
+      "name": "Device Password History",
+      "description": "Specifies how many passwords can be stored in the history that can't be used.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/DevicePasswordHistory",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_enforcelockscreenandlogonimage",
+      "name": "Enforce Lock Screen and Logon Image",
+      "description": "Specifies the full image filepath and filename for the lock screen image.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/EnforceLockScreenAndLogonImage",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_maxdevicepasswordfailedattempts",
+      "name": "Max Device Password Failed Attempts",
+      "description": "Number of password failures before device is put into BitLocker recovery mode.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/MaxDevicePasswordFailedAttempts",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_maxinactivitytimedevicelock",
+      "name": "Max Inactivity Time Device Lock",
+      "description": "Specifies the maximum amount of time (in minutes) allowed after the device is idle before it becomes PIN or password locked.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/MaxInactivityTimeDeviceLock",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_mindevicepasswordcomplexcharacters",
+      "name": "Min Device Password Complex Characters",
+      "description": "The number of complex element types required for a strong PIN or password.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/MinDevicePasswordComplexCharacters",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_mindevicepasswordlength",
+      "name": "Min Device Password Length",
+      "description": "Specifies the minimum number of characters required in the PIN or password.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/MinDevicePasswordLength",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_minimumpasswordage",
+      "name": "Minimum Password Age",
+      "description": "The period of time (in days) that a password must be used before the user can change it.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/MinimumPasswordAge",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_preventenablinglockscreencamera",
+      "name": "Prevent Enabling Lock Screen Camera",
+      "description": "Disables the lock screen camera toggle switch and prevents a camera from being invoked on the lock screen.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/PreventEnablingLockScreenCamera",
+      "category": "Camera",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_devicelock_preventlockscreenslideshow",
+      "name": "Prevent Lock Screen Slide Show",
+      "description": "Disables the lock screen slide show settings and prevents a slide show from playing on the lock screen.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/DeviceLock/PreventLockScreenSlideShow",
+      "category": "Device Lock",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_display_configuremultipledisplaymode",
+      "name": "Configure Multiple Display Mode",
+      "description": "Set the default display arrangement as clone, extend, internalOnly, externalOnly or default Windows Settings.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Display/ConfigureMultipleDisplayMode",
+      "category": "Display",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_display_enableperprocessdpi",
+      "name": "Enable Per- Process D P I",
+      "description": "Enable or disable Per-Process System DPI for all applications.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Display/EnablePerProcessDpi",
+      "category": "Display",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_errorreporting_disablewindowserrorreporting",
+      "name": "Disable Windows Error Reporting",
+      "description": "Turns off Windows Error Reporting, so that reports are not collected or sent to Microsoft.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/ErrorReporting/DisableWindowsErrorReporting",
+      "category": "Error Reporting",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_errorreporting_displayerrornotification",
+      "name": "Display Error Notification",
+      "description": "Controls whether users are shown an error dialog box that lets them report an error.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/ErrorReporting/DisplayErrorNotification",
+      "category": "Display",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_errorreporting_donotsendadditionaldata",
+      "name": "Do Not Send Additional Error Data",
+      "description": "Controls whether additional data in support of error reports can be sent to Microsoft automatically.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/ErrorReporting/DoNotSendAdditionalData",
+      "category": "Error Reporting",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_errorreporting_preventcriticalerrordisplay",
+      "name": "Prevent Critical Error Display",
+      "description": "Prevents the display of the user interface for critical errors.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/ErrorReporting/PreventCriticalErrorDisplay",
+      "category": "Display",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_experience_allowclipboardhistory",
+      "name": "Allow Clipboard History",
+      "description": "Allows history of clipboard items to be stored in memory.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Experience/AllowClipboardHistory",
+      "category": "Windows Experience",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_experience_allowcortana",
+      "name": "Allow Cortana",
+      "description": "Specifies whether Cortana is allowed on the device.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Experience/AllowCortana",
+      "category": "Windows Experience",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_experience_allowfindmydevice",
+      "name": "Allow Find My Device",
+      "description": "This policy turns on Find My Device.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Experience/AllowFindMyDevice",
+      "category": "Windows Experience",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_experience_allowmanualmdmunenrollment",
+      "name": "Allow Manual M D M Unenrollment",
+      "description": "Specifies whether to allow the user to delete the workplace account using the workplace control panel.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Experience/AllowManualMDMUnenrollment",
+      "category": "Windows Experience",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_experience_allowscreencapture",
+      "name": "Allow Screen Capture",
+      "description": "Allow screen capture.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Experience/AllowScreenCapture",
+      "category": "Windows Experience",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_experience_allowsyncmysettings",
+      "name": "Allow Sync My Settings",
+      "description": "Allows or disallows all Windows sync settings on the device.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Experience/AllowSyncMySettings",
+      "category": "Windows Experience",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_experience_allowwindowsconsumerfeatures",
+      "name": "Allow Windows Consumer Features",
+      "description": "Allows IT admins to turn on experiences that are typically for consumers only, such as Start suggestions.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Experience/AllowWindowsConsumerFeatures",
+      "category": "Windows Experience",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_experience_allowwindowstips",
+      "name": "Allow Windows Tips",
+      "description": "Enables or disables Windows Tips / soft landing.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Experience/AllowWindowsTips",
+      "category": "Windows Experience",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_experience_configurechaticon",
+      "name": "Configure Chat Icon",
+      "description": "Configures the Chat icon on the taskbar.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Experience/ConfigureChatIcon",
+      "category": "Windows Experience",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_experience_disablecloudoptimizedcontent",
+      "name": "Disable Cloud Optimized Content",
+      "description": "Controls Windows experiences that use the cloud optimized content client component.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Experience/DisableCloudOptimizedContent",
+      "category": "Windows Experience",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_experience_donotshowfeedbacknotifications",
+      "name": "Do Not Show Feedback Notifications",
+      "description": "Prevents devices from showing feedback questions from Microsoft.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Experience/DoNotShowFeedbackNotifications",
+      "category": "Notifications",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_kerberos_cloudkerberosticketretrievalenabled",
+      "name": "Cloud Kerberos Ticket Retrieval Enabled",
+      "description": "Allow retrieving the cloud Kerberos ticket during the logon.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Kerberos/CloudKerberosTicketRetrievalEnabled",
+      "category": "Kerberos",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_kerberos_kerberosclientsupportsclaimscompoundarmor",
+      "name": "Kerberos Client Supports Claims Compound Armor",
+      "description": "Controls whether a device will request claims and compound authentication for Dynamic Access Control and Kerberos armoring.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Kerberos/KerberosClientSupportsClaimsCompoundArmor",
+      "category": "Kerberos",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_kerberos_requirekerberosarmoring",
+      "name": "Require Kerberos Armoring",
+      "description": "Controls whether a computer requires that Kerberos message exchanges be armored when communicating with a domain controller.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Kerberos/RequireKerberosArmoring",
+      "category": "Kerberos",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_kerberos_requirestrictkdcvalidation",
+      "name": "Require Strict K D C Validation",
+      "description": "Controls the Kerberos client's behavior in validating the KDC certificate for smart card and system certificate logon.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Kerberos/RequireStrictKDCValidation",
+      "category": "Kerberos",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_kioskbrowser_blockedurlexceptions",
+      "name": "Kiosk Browser Blocked U R L Exceptions",
+      "description": "List of exceptions to the blocked website URLs.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/BlockedUrlExceptions",
+      "category": "Browser",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_kioskbrowser_blockedurls",
+      "name": "Kiosk Browser Blocked U R Ls",
+      "description": "List of blocked website URLs. Kiosk browsers cannot navigate to these.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/BlockedUrls",
+      "category": "Browser",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_kioskbrowser_defaulturl",
+      "name": "Kiosk Browser Default U R L",
+      "description": "Configures the default URL kiosk browsers navigate to on launch and restart.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/DefaultURL",
+      "category": "Browser",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_kioskbrowser_enableendsessionbutton",
+      "name": "Kiosk Browser Enable End Session Button",
+      "description": "Enable/disable kiosk browser's end session button.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/EnableEndSessionButton",
+      "category": "Browser",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_kioskbrowser_enablehomebutton",
+      "name": "Kiosk Browser Enable Home Button",
+      "description": "Enable/disable kiosk browser's home button.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/EnableHomeButton",
+      "category": "Browser",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_kioskbrowser_enablenavigationbuttons",
+      "name": "Kiosk Browser Enable Navigation Buttons",
+      "description": "Enable/disable kiosk browser's navigation buttons (forward/back).",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/EnableNavigationButtons",
+      "category": "Browser",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_kioskbrowser_restartonidletime",
+      "name": "Kiosk Browser Restart On Idle Time",
+      "description": "Amount of time in minutes the session is idle until the kiosk browser restarts in a fresh state.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/RestartOnIdleTime",
+      "category": "Browser",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_lanmanworkstation_auditinsecureguestlogon",
+      "name": "Audit Insecure Guest Logon",
+      "description": "Controls whether the SMB client will enable the audit event when the client is logged on as guest account.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/AuditInsecureGuestLogon",
+      "category": "Auditing",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_lanmanworkstation_enableinsecureguestlogons",
+      "name": "Enable Insecure Guest Logons",
+      "description": "This policy setting determines if the SMB client will allow insecure guest logons to an SMB server.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/EnableInsecureGuestLogons",
+      "category": "SMB / LAN Manager",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_lanmanworkstation_maxsmb2dialect",
+      "name": "Max S M B2 Dialect",
+      "description": "This policy controls the maximum version of SMB protocol.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/MaxSmb2Dialect",
+      "category": "SMB / LAN Manager",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_lanmanworkstation_minsmb2dialect",
+      "name": "Min S M B2 Dialect",
+      "description": "This policy controls the minimum version of SMB protocol.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/MinSmb2Dialect",
+      "category": "SMB / LAN Manager",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_lanmanworkstation_requireencryption",
+      "name": "Require S M B Encryption",
+      "description": "This policy controls whether the SMB client will require encryption.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/RequireEncryption",
+      "category": "SMB / LAN Manager",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_maps_allowofflinemapsdownloadovermeteredconnection",
+      "name": "Allow Offline Maps Download Over Metered Connection",
+      "description": "Allows the download and update of map data over metered connections.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Maps/AllowOfflineMapsDownloadOverMeteredConnection",
+      "category": "Maps",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_maps_enableofflinemapsautoupdate",
+      "name": "Enable Offline Maps Auto Update",
+      "description": "Disables the automatic download and update of map data.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Maps/EnableOfflineMapsAutoUpdate",
+      "category": "Maps",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_messaging_allowmessagesync",
+      "name": "Allow Message Sync",
+      "description": "This policy setting allows backup and restore of cellular text messages to Microsoft's cloud services.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Messaging/AllowMessageSync",
+      "category": "Messaging",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_networkisolation_enterprisecloudresources",
+      "name": "Enterprise Cloud Resources",
+      "description": "Contains a list of Enterprise resource domains hosted in the cloud that need to be protected.",
+      "csp_path": "./Vendor/MSFT/Policy/Config/NetworkIsolation/EnterpriseCloudResources",
+      "category": "Network Isolation",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_networkisolation_enterpriseiprange",
+      "name": "Enterprise I P Range",
+      "description": "Sets the enterprise IP ranges that define the computers in the enterprise network.",
+      "csp_path": "./Vendor/MSFT/Policy/Config/NetworkIsolation/EnterpriseIPRange",
+      "category": "Network Isolation",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_networkisolation_enterprisenetworkdomainnames",
+      "name": "Enterprise Network Domain Names",
+      "description": "The list of domains that comprise the boundaries of the enterprise.",
+      "csp_path": "./Vendor/MSFT/Policy/Config/NetworkIsolation/EnterpriseNetworkDomainNames",
+      "category": "Network Isolation",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_networkisolation_enterpriseproxyservers",
+      "name": "Enterprise Proxy Servers",
+      "description": "This is a comma-separated list of proxy servers that are considered non-enterprise.",
+      "csp_path": "./Vendor/MSFT/Policy/Config/NetworkIsolation/EnterpriseProxyServers",
+      "category": "Network Isolation",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_notifications_disallowcloudnotification",
+      "name": "Disallow Cloud Notification",
+      "description": "This policy setting blocks applications from using the network to send tile, badge, toast, and raw notifications (WNS).",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Notifications/DisallowCloudNotification",
+      "category": "Notifications",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_search_allowcloudsearch",
+      "name": "Allow Cloud Search",
+      "description": "Allow search and Cortana to search cloud sources like OneDrive and SharePoint.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowCloudSearch",
+      "category": "Search",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_search_allowindexingencryptedstoresoritems",
+      "name": "Allow Indexing Encrypted Stores Or Items",
+      "description": "Allows or disallows the indexing of items, including WIP-protected files.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowIndexingEncryptedStoresOrItems",
+      "category": "Search",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_search_allowsearchtouselocation",
+      "name": "Allow Search To Use Location",
+      "description": "Specifies whether search can leverage location information.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowSearchToUseLocation",
+      "category": "Search",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_search_disablesearch",
+      "name": "Disable Search",
+      "description": "Disables Search UI and all its entry points including keyboard shortcuts and taskbar.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Search/DisableSearch",
+      "category": "Search",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_search_donotusewebresults",
+      "name": "Do Not Use Web Results",
+      "description": "Don't search the web or display web results in Search.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Search/DoNotUseWebResults",
+      "category": "Search",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_speech_allowspeechmodelupdate",
+      "name": "Allow Speech Model Update",
+      "description": "Specifies whether the device will receive updates to the speech recognition and speech synthesis models.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Speech/AllowSpeechModelUpdate",
+      "category": "Speech",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_storage_allowdiskhealthmodelupdates",
+      "name": "Allow Disk Health Model Updates",
+      "description": "Allows disk health model updates.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Storage/AllowDiskHealthModelUpdates",
+      "category": "Storage",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_storage_allowstoragesenseglobal",
+      "name": "Allow Storage Sense Global",
+      "description": "Storage Sense can automatically clean some of the user's files to free up disk space.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Storage/AllowStorageSenseGlobal",
+      "category": "Storage",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_storage_enhancedstoragedevices",
+      "name": "Enhanced Storage Devices ( T C G Security)",
+      "description": "Configures whether Windows will activate an Enhanced Storage device.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Storage/EnhancedStorageDevices",
+      "category": "Storage",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_storage_removablediskdenywriteaccess",
+      "name": "Removable Disk Deny Write Access",
+      "description": "If you enable this policy setting, write access is denied to this removable storage class.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Storage/RemovableDiskDenyWriteAccess",
+      "category": "Storage",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_tenantrestrictions_configuretenantrestrictions",
+      "name": "Configure Tenant Restrictions",
+      "description": "Enables and configures the device-based tenant restrictions feature for Azure Active Directory.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/TenantRestrictions/ConfigureTenantRestrictions",
+      "category": "Tenant Restrictions",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_wifi_allowautoconnecttowifisensehotspots",
+      "name": "Allow Auto Connect To Wi- Fi Sense Hotspots",
+      "description": "Allow or disallow the device to automatically connect to Wi-Fi hotspots.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowAutoConnectToWiFiSenseHotspots",
+      "category": "Wi-Fi",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_wifi_allowinternetsharing",
+      "name": "Allow Internet Sharing",
+      "description": "Allow or disallow internet sharing.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowInternetSharing",
+      "category": "Wi-Fi",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_wifi_allowmanualwificonfiguration",
+      "name": "Allow Manual Wi- Fi Configuration",
+      "description": "Allow or block connections to Wi-Fi outside of MDM server-installed networks.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowManualWiFiConfiguration",
+      "category": "Wi-Fi",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_wifi_allowwifi",
+      "name": "Allow Wi- Fi",
+      "description": "This policy has been deprecated.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowWiFi",
+      "category": "Wi-Fi",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_wifi_allowwifidirect",
+      "name": "Allow Wi- Fi Direct",
+      "description": "Allow WiFi Direct connection.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowWiFiDirect",
+      "category": "Wi-Fi",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_windowsconnectionmanager_prohitconnectiontonondomainnetworkswhenconnectedtodomainauthenticatednetwork",
+      "name": "Prohibit Connection To Non- Domain Networks When Connected To Domain",
+      "description": "Prevents computers from connecting to both a domain based network and a non-domain based network at the same time.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/WindowsConnectionManager/ProhitConnectionToNonDomainNetworksWhenConnectedToDomainAuthenticatednetwork",
+      "category": "Connection Manager",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_windowsinkworkspace_allowsuggestedappsinwindowsinkworkspace",
+      "name": "Allow Suggested Apps In Windows Ink Workspace",
+      "description": "Show recommended app suggestions in the ink workspace.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/WindowsInkWorkspace/AllowSuggestedAppsInWindowsInkWorkspace",
+      "category": "Windows Ink",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_windowsinkworkspace_allowwindowsinkworkspace",
+      "name": "Allow Windows Ink Workspace",
+      "description": "Specifies whether to allow the user to access the ink workspace.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/WindowsInkWorkspace/AllowWindowsInkWorkspace",
+      "category": "Windows Ink",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_windowssandbox_allowaudioinput",
+      "name": "Windows Sandbox Allow Audio Input",
+      "description": "Allow audio input in Windows Sandbox.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/WindowsSandbox/AllowAudioInput",
+      "category": "Windows Sandbox",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_windowssandbox_allowclipboardredirection",
+      "name": "Windows Sandbox Allow Clipboard Redirection",
+      "description": "Allow clipboard sharing with Windows Sandbox.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/WindowsSandbox/AllowClipboardRedirection",
+      "category": "Windows Sandbox",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_windowssandbox_allownetworking",
+      "name": "Windows Sandbox Allow Networking",
+      "description": "Allow networking in Windows Sandbox.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/WindowsSandbox/AllowNetworking",
+      "category": "Windows Sandbox",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_windowssandbox_allowprinterredirection",
+      "name": "Windows Sandbox Allow Printer Redirection",
+      "description": "Allow printer sharing with Windows Sandbox.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/WindowsSandbox/AllowPrinterRedirection",
+      "category": "Windows Sandbox",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_windowssandbox_allowvgpu",
+      "name": "Windows Sandbox Allow v G P U",
+      "description": "Allow vGPU sharing for Windows Sandbox.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/WindowsSandbox/AllowVGPU",
+      "category": "Windows Sandbox",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "device_vendor_msft_policy_config_windowssandbox_allowvideoinput",
+      "name": "Windows Sandbox Allow Video Input",
+      "description": "Allow video input in Windows Sandbox.",
+      "csp_path": "./Device/Vendor/MSFT/Policy/Config/WindowsSandbox/AllowVideoInput",
+      "category": "Windows Sandbox",
+      "docs_url": "",
+      "value_map": "{}"
+    },
+    {
       "normalized_key": "laps_policies_adencryptedpasswordhistorysize",
       "name": "Number of previous encrypted passwords to remember in AD (0-12).",
       "description": "Number of previous encrypted passwords to remember in AD (0-12).",
@@ -655,6 +2005,366 @@
       "csp_path": "./Device/Vendor/MSFT/LAPS/Policies/PostAuthenticationResetDelay",
       "category": "LAPS",
       "docs_url": "https://learn.microsoft.com/en-us/windows/client-management/mdm/laps-csp",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_customcompliance_discoveryscript",
+      "name": "Custom Compliance_ Script",
+      "description": "Select your discovery script",
+      "csp_path": "com.microsoft.manage.LinuxMdm/CustomCompliance/DiscoveryScript",
+      "category": "Linux Compliance",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_customcompliance_required",
+      "name": "Custom Compliance",
+      "description": "CustomCompliance",
+      "csp_path": "com.microsoft.manage.LinuxMdm/CustomCompliance/Required",
+      "category": "Linux Compliance",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_customcompliance_rules",
+      "name": "Custom Compliance_ Rules",
+      "description": "Select your rules file",
+      "csp_path": "com.microsoft.manage.LinuxMdm/CustomCompliance/Rules",
+      "category": "Linux Compliance",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_customconfig_executioncontext",
+      "name": "Custom Config Execution Context",
+      "description": "Specifies in which context to execute the script.",
+      "csp_path": "com.microsoft.manage.LinuxMdm/CustomConfig/ExecutionContext",
+      "category": "Linux Custom Config",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_customconfig_executionfrequency",
+      "name": "Custom Config Execution Frequency",
+      "description": "Specifies how frequently to execute the script.",
+      "csp_path": "com.microsoft.manage.LinuxMdm/CustomConfig/ExecutionFrequency",
+      "category": "Linux Custom Config",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_customconfig_executionretries",
+      "name": "Custom Config Execution Retries",
+      "description": "Specifies how many times to retry script execution on failure.",
+      "csp_path": "com.microsoft.manage.LinuxMdm/CustomConfig/ExecutionRetries",
+      "category": "Linux Custom Config",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_customconfig_script",
+      "name": "Custom Config_ Script",
+      "description": "Select the file containing the script to execute.",
+      "csp_path": "com.microsoft.manage.LinuxMdm/CustomConfig/Script",
+      "category": "Linux Custom Config",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_deviceencryption_required",
+      "name": "Require Device Encryption",
+      "description": "Specifies whether device-level encryption is required for writable fixed disks on this computer",
+      "csp_path": "com.microsoft.manage.LinuxMdm/DeviceEncryption/Required",
+      "category": "Linux Compliance",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_distribution_alloweddistros",
+      "name": "Allowed Distros",
+      "description": "Specifies which Linux distributions and versions are considered compliant.",
+      "csp_path": "com.microsoft.manage.LinuxMdm/Distribution/AllowedDistros",
+      "category": "Linux Compliance",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_allowedthreats",
+      "name": "Allowed Threats",
+      "description": "List of threats (identified by their name) that are not blocked by the product and are instead allowed to run.",
+      "csp_path": "PayloadContent/antivirusEngine/allowedThreats",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_behaviormonitoring",
+      "name": "Behavior Monitoring",
+      "description": "Whether the antivirus engine runs behavior monitoring and blocking or not.",
+      "csp_path": "PayloadContent/antivirusEngine/behaviorMonitoring",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_disallowedthreatactions",
+      "name": "Disallowed Threat Actions",
+      "description": "Restricts the actions that the local user of a device can take when threats are detected.",
+      "csp_path": "PayloadContent/antivirusEngine/disallowedThreatActions",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_enablefilehashcomputation",
+      "name": "Enable File Hash Computation",
+      "description": "Whether the antivirus engine computes hashes for the files it scans or not.",
+      "csp_path": "PayloadContent/antivirusEngine/enableFileHashComputation",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_enablerealtimeprotection",
+      "name": "Enable Real- Time Protection",
+      "description": "Locates and stops malware from installing or running on your device.",
+      "csp_path": "PayloadContent/antivirusEngine/enableRealTimeProtection",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_enforcementlevel",
+      "name": "Antivirus Enforcement Level",
+      "description": "Specifies the enforcement preference of antivirus engine. Real-time, On-demand, or Passive.",
+      "csp_path": "PayloadContent/antivirusEngine/enforcementLevel",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_exclusions",
+      "name": "Antivirus Exclusions",
+      "description": "Entities excluded from the scan. Exclusions can be specified by full paths, extensions, or file names.",
+      "csp_path": "PayloadContent/antivirusEngine/exclusions",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_exclusionsmergepolicy",
+      "name": "Exclusions Merge Policy",
+      "description": "Specify the merge policy for exclusions: merge (admin + user) or admin_only.",
+      "csp_path": "PayloadContent/antivirusEngine/exclusionsMergePolicy",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_maximumondemandscanthreads",
+      "name": "Maximum On- Demand Scan Threads",
+      "description": "Specify the maximum number of threads used to perform the on-demand scan.",
+      "csp_path": "PayloadContent/antivirusEngine/maximumOnDemandScanThreads",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_nonexecmountpolicy",
+      "name": "Non- Exec Mount Policy",
+      "description": "Specifies the behavior of RTP on mount point marked as nonexec.",
+      "csp_path": "PayloadContent/antivirusEngine/nonExecMountPolicy",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_passivemode",
+      "name": "Passive Mode",
+      "description": "Whether the antivirus engine runs in passive mode or not.",
+      "csp_path": "PayloadContent/antivirusEngine/passiveMode",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_scanafterdefinitionupdate",
+      "name": "Scan After Definition Update",
+      "description": "Specifies whether to start a process scan after new security intelligence updates are downloaded.",
+      "csp_path": "PayloadContent/antivirusEngine/scanAfterDefinitionUpdate",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_scanarchives",
+      "name": "Scan Archives",
+      "description": "Specifies whether to scan archives during on-demand antivirus scans.",
+      "csp_path": "PayloadContent/antivirusEngine/scanArchives",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_scanhistorymaximumitems",
+      "name": "Scan History Maximum Items",
+      "description": "Specify the maximum number of entries to keep in the scan history.",
+      "csp_path": "PayloadContent/antivirusEngine/scanHistoryMaximumItems",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_scanresultsretentiondays",
+      "name": "Scan Results Retention Days",
+      "description": "Specify the number of days that results are retained in the scan history.",
+      "csp_path": "PayloadContent/antivirusEngine/scanResultsRetentionDays",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_threattypesettings",
+      "name": "Threat Type Settings",
+      "description": "Controls how certain threat types are handled by the product.",
+      "csp_path": "PayloadContent/antivirusEngine/threatTypeSettings",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_threattypesettingsmergepolicy",
+      "name": "Threat Type Settings Merge Policy",
+      "description": "Specify the merge policy for threat type settings.",
+      "csp_path": "PayloadContent/antivirusEngine/threatTypeSettingsMergePolicy",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_antivirusengine_unmonitoredfilesystems",
+      "name": "Unmonitored Filesystems",
+      "description": "List of filesystems to be unmonitored/excluded from Real-Time Protection.",
+      "csp_path": "PayloadContent/antivirusEngine/unmonitoredFilesystems",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_cloudservice_automaticdefinitionupdateenabled",
+      "name": "Automatic Definition Update Enabled",
+      "description": "Determines whether security intelligence updates are installed automatically.",
+      "csp_path": "PayloadContent/cloudService/automaticDefinitionUpdateEnabled",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_cloudservice_automaticsamplesubmissionconsent",
+      "name": "Automatic Sample Submission Consent",
+      "description": "Sends sample files to Microsoft to help protect device users and your organization from potential threats.",
+      "csp_path": "PayloadContent/cloudService/automaticSampleSubmissionConsent",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_cloudservice_cloudblocklevel",
+      "name": "Cloud Block Level",
+      "description": "Determines how aggressive Defender for Endpoint is in blocking and scanning suspicious files.",
+      "csp_path": "PayloadContent/cloudService/cloudBlockLevel",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_cloudservice_diagnosticlevel",
+      "name": "Diagnostic Level",
+      "description": "Controls sharing of diagnostic and usage data with Microsoft.",
+      "csp_path": "PayloadContent/cloudService/diagnosticLevel",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_cloudservice_enabled",
+      "name": "Cloud- Delivered Protection Enabled",
+      "description": "Provides increased, faster protection with access to the latest protection data in the cloud.",
+      "csp_path": "PayloadContent/cloudService/enabled",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_edr_tags",
+      "name": "E D R Tags",
+      "description": "Tags applied to the device for EDR grouping and filtering.",
+      "csp_path": "PayloadContent/edr/tags",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_exclusionsettings_exclusions",
+      "name": "Global Exclusions",
+      "description": "Global exclusions apply to both Antivirus and EDR to exclude at a much lower level closer to sensors.",
+      "csp_path": "PayloadContent/exclusionSettings/exclusions",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_mdatp_managed_networkprotection_enforcementlevel",
+      "name": "Network Protection Enforcement Level",
+      "description": "Specifies if network protection is disabled, in audit mode, or enforced.",
+      "csp_path": "PayloadContent/networkProtection/enforcementLevel",
+      "category": "Linux Defender for Endpoint",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_passwordpolicy_minimumdigits",
+      "name": "Minimum Digits",
+      "description": "Specifies the minimum number of digits a password must contain.",
+      "csp_path": "com.microsoft.manage.LinuxMdm/PasswordPolicy/MinimumDigits",
+      "category": "Linux Compliance",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_passwordpolicy_minimumlength",
+      "name": "Minimum Length",
+      "description": "Specifies the minimum number of total characters a password must contain.",
+      "csp_path": "com.microsoft.manage.LinuxMdm/PasswordPolicy/MinimumLength",
+      "category": "Linux Compliance",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_passwordpolicy_minimumlowercase",
+      "name": "Minimum Lowercase",
+      "description": "Specifies the minimum number of lowercase letters a password must contain.",
+      "csp_path": "com.microsoft.manage.LinuxMdm/PasswordPolicy/MinimumLowercase",
+      "category": "Linux Compliance",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_passwordpolicy_minimumsymbols",
+      "name": "Minimum Symbols",
+      "description": "Specifies the minimum number of symbols a password must contain.",
+      "csp_path": "com.microsoft.manage.LinuxMdm/PasswordPolicy/MinimumSymbols",
+      "category": "Linux Compliance",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
+      "value_map": "{}"
+    },
+    {
+      "normalized_key": "linux_passwordpolicy_minimumuppercase",
+      "name": "Minimum Uppercase",
+      "description": "Specifies the minimum number of uppercase letters a password must contain.",
+      "csp_path": "com.microsoft.manage.LinuxMdm/PasswordPolicy/MinimumUppercase",
+      "category": "Linux Compliance",
+      "docs_url": "https://learn.microsoft.com/en-us/mem/intune/configuration/policy-linux",
       "value_map": "{}"
     },
     {

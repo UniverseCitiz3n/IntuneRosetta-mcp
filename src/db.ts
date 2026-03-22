@@ -109,9 +109,17 @@ export function findByCspPathFragment(fragment: string, limit = 20): PolicyRecor
 /**
  * Load the pre-built Intune policy knowledge base from `db/intune-policies.json`.
  *
- * This JSON file was built at development time by querying the Microsoft Graph API
- * (via Lokka and msgraph-kb MCP tools) and is committed to the repository so the
- * server starts with a fully populated KB — no runtime Graph API connection required.
+ * This JSON file was built at development time using a combination of:
+ *  - **Lokka MCP** (Microsoft Graph API): `/deviceManagement/configurationSettings`,
+ *    `/deviceManagement/complianceSettings`, `/deviceManagement/groupPolicyDefinitions`
+ *  - **msgraph-kb MCP**: confirmed endpoint shapes, descriptions and permissions
+ *
+ * Platforms covered: Windows, macOS, iOS/iPadOS, Android Enterprise, Linux.
+ * Config types covered: Settings Catalogue, Device Configuration, Compliance,
+ * Endpoint Security, Administrative Templates (Group Policy), ADE Enrollment.
+ *
+ * The file is committed to the repository so the server starts with a fully populated
+ * KB — no runtime Graph API connection is required.
  */
 function loadPrebuiltKb(): Array<Omit<PolicyRecord, 'id'>> {
   // Works from dist/ (compiled) or src/ (ts-node): resolve relative to this file's dir
