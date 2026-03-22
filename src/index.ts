@@ -1,0 +1,230 @@
+#!/usr/bin/env node
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { z } from 'zod';
+import { seedDatabase, searchPolicies, findByCspPathFragment } from './db';
+import { translateKey, normalizeKey, splitValueSegment, buildMetadata } from './parser';
+import { PolicyMetadata } from './types';
+import { msgraphKbClient } from './msgraph-client';
+import { hydratePolicyRecord } from './hydrator';
+import { buildKnowledgeBase } from './kb-builder';
+
+// ─── Bootstrap ────────────────────────────────────────────────────────────────
+seedDatabase();
+
+// ─── MCP Server ───────────────────────────────────────────────────────────────
+const server = new McpServer({
+  name: 'IntuneRosetta',
+  version: '1.0.0',
+});
+
+// ── Tool: translate_csp_key ──────────────────────────────────────────────────
+server.tool(
+  'translate_csp_key',
+  'Translates a raw underscore-delimited OMA-URI / CSP path string into structured, human-readable policy metadata.',
+  {
+    key: z.string().describe('Raw underscore-delimited CSP/OMA-URI string, e.g. device_vendor_msft_policy_config_defender_attacksurfacereductionrules_blockexecutionofpotentiallyobfuscatedscripts_2'),
+  },
+  async ({ key }) => {
+    const metadata = translateKey(key);
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(metadata, null, 2),
+        },
+      ],
+    };
+  }
+);
+
+// ── Tool: batch_translate ────────────────────────────────────────────────────
+server.tool(
+  'batch_translate',
+  'Translates an array of raw underscore-delimited OMA-URI / CSP path strings into structured policy metadata.',
+  {
+    keys: z.array(z.string()).describe('Array of raw underscore-delimited CSP/OMA-URI strings to translate'),
+  },
+  async ({ keys }) => {
+    const results: PolicyMetadata[] = keys.map((k) => translateKey(k));
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(results, null, 2),
+        },
+      ],
+    };
+  }
+);
+
+// ── Tool: search_policy ──────────────────────────────────────────────────────
+server.tool(
+  'search_policy',
+  'Performs a fuzzy keyword search across the internal policy database by name, description, category, or CSP path fragment.',
+  {
+    query: z.string().describe('Keyword or phrase to search for, e.g. "obfuscated scripts", "bitlocker", "laps password"'),
+    limit: z.number().int().min(1).max(100).optional().default(20).describe('Maximum number of results to return (default 20)'),
+  },
+  async ({ query, limit }) => {
+    const records = searchPolicies(query, limit);
+    const results = records.map((r) => {
+      const { valueSegment } = splitValueSegment(r.normalized_key);
+      return buildMetadata(r, valueSegment);
+    });
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(results, null, 2),
+        },
+      ],
+    };
+  }
+);
+
+// ── Tool: resolve_to_csp ─────────────────────────────────────────────────────
+server.tool(
+  'resolve_to_csp',
+  'Resolves a human-readable policy name or keyword to matching CSP key(s) and full metadata. Supports partial/fuzzy matching so inputs like "block obfuscated scripts" or "bitlocker startup auth" resolve correctly.',
+  {
+    query: z.string().describe('Human-readable policy name or keyword, e.g. "block obfuscated scripts", "bitlocker startup authentication", "laps password length"'),
+    limit: z.number().int().min(1).max(100).optional().default(10).describe('Maximum number of results to return (default 10)'),
+  },
+  async ({ query, limit }) => {
+    // Combine name/description search with CSP path fragment search and deduplicate
+    const nameResults = searchPolicies(query, limit);
+    const cspResults = findByCspPathFragment(normalizeKey(query), limit);
+
+    const seen = new Set<string>();
+    const combined = [...nameResults, ...cspResults].filter((r) => {
+      if (seen.has(r.normalized_key)) return false;
+      seen.add(r.normalized_key);
+      return true;
+    }).slice(0, limit);
+
+    const results = combined.map((r) => ({
+      csp_key: r.normalized_key,
+      ...buildMetadata(r, undefined),
+    }));
+
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(results, null, 2),
+        },
+      ],
+    };
+  }
+);
+
+// ── Tool: hydrate_db ─────────────────────────────────────────────────────────
+server.tool(
+  'hydrate_db',
+  'Stores one or more policy metadata records directly into the local SQLite database. Use this to persist data fetched from msgraph-kb or other MCP sources so that future lookups are served from the local cache. The LLM workflow: call msgraph-kb (search_graph_apis / get_api_details), then call this tool with the results.',
+  {
+    policies: z.array(
+      z.object({
+        csp_key: z.string().describe('Normalised underscore-delimited CSP key (device_vendor_msft_ prefix is stripped automatically)'),
+        name: z.string().describe('Human-readable policy name'),
+        description: z.string().optional().default('').describe('What the setting does'),
+        csp_path: z.string().describe('Canonical OMA-URI path, e.g. ./Device/Vendor/MSFT/Policy/Config/Defender/AttackSurfaceReductionRules'),
+        category: z.string().optional().default('').describe('Policy area, e.g. "Defender ASR", "BitLocker", "LAPS"'),
+        docs_url: z.string().optional().default('').describe('Link to Microsoft documentation'),
+        value_map: z.record(z.string(), z.string()).optional().default({}).describe('Map of raw values to human-readable labels, e.g. {"0":"Disabled","1":"Block","2":"Audit"}'),
+      })
+    ).min(1).describe('One or more policy records to store'),
+  },
+  async ({ policies }) => {
+    let stored = 0;
+    for (const p of policies) {
+      hydratePolicyRecord({
+        normalized_key: normalizeKey(p.csp_key),
+        name: p.name,
+        description: p.description,
+        csp_path: p.csp_path,
+        category: p.category,
+        docs_url: p.docs_url,
+        value_map: JSON.stringify(p.value_map),
+      });
+      stored++;
+    }
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify({ stored, message: `Successfully stored ${stored} policy record(s) in the database.` }, null, 2),
+        },
+      ],
+    };
+  }
+);
+
+// ── Tool: refresh_kb ─────────────────────────────────────────────────────────
+server.tool(
+  'refresh_kb',
+  'Rebuilds the local knowledge base by querying msgraph-kb with all predefined search terms and persisting every result. Requires MSGRAPH_KB_COMMAND to be set. Use force=true to overwrite existing records with fresh data from msgraph-kb.',
+  {
+    force: z.boolean().optional().default(false).describe('When true, overwrite existing records with fresh data from msgraph-kb. When false (default), only add new records that are not already in the database.'),
+  },
+  async ({ force }) => {
+    if (!msgraphKbClient.isConfigured()) {
+      return {
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              success: false,
+              message: 'msgraph-kb is not configured. Set MSGRAPH_KB_COMMAND (and optionally MSGRAPH_KB_ARGS) environment variables to enable KB building.',
+            }, null, 2),
+          },
+        ],
+      };
+    }
+
+    const stats = await buildKnowledgeBase(msgraphKbClient, force);
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify({
+            success: true,
+            message: `KB refresh complete. Searched ${stats.terms_searched} term(s), found ${stats.results_found} result(s), upserted ${stats.records_upserted} record(s)${stats.errors > 0 ? `, ${stats.errors} error(s)` : ''}.`,
+            stats,
+          }, null, 2),
+        },
+      ],
+    };
+  }
+);
+
+// ─── Cleanup on shutdown ──────────────────────────────────────────────────────
+process.on('SIGINT', () => { msgraphKbClient.close().finally(() => process.exit(0)); });
+process.on('SIGTERM', () => { msgraphKbClient.close().finally(() => process.exit(0)); });
+
+// ─── Start ────────────────────────────────────────────────────────────────────
+async function main(): Promise<void> {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  process.stderr.write('IntuneRosetta MCP server started\n');
+
+  if (msgraphKbClient.isConfigured()) {
+    process.stderr.write(`msgraph-kb configured (MSGRAPH_KB_COMMAND=${process.env['MSGRAPH_KB_COMMAND']})\n`);
+    // Build the full KB in the background — non-blocking so the server is
+    // immediately ready to accept requests while the KB populates.
+    buildKnowledgeBase(msgraphKbClient).then((stats) => {
+      process.stderr.write(
+        `KB build complete: ${stats.terms_searched} terms, ${stats.results_found} results, ${stats.records_upserted} upserted${stats.errors > 0 ? `, ${stats.errors} errors` : ''}\n`,
+      );
+    }).catch((err: unknown) => {
+      process.stderr.write(`KB build failed: ${err}\n`);
+    });
+  }
+}
+
+main().catch((err) => {
+  process.stderr.write(`Fatal error: ${err}\n`);
+  process.exit(1);
+});
+
