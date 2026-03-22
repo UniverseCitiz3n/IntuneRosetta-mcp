@@ -58,7 +58,7 @@ export class MsgraphKbClient {
       stderr: 'pipe',
     });
 
-    this.client = new Client({ name: 'intunerosetta-hydrator', version: '1.0.0' });
+    this.client = new Client({ name: 'intunerosetta', version: '1.0.0' });
     await this.client.connect(transport);
     this.connected = true;
   }

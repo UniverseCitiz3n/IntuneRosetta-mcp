@@ -6,7 +6,6 @@ import { seedDatabase, searchPolicies, findByCspPathFragment } from './db';
 import { translateKey, normalizeKey, splitValueSegment, buildMetadata } from './parser';
 import { PolicyMetadata } from './types';
 import { msgraphKbClient } from './msgraph-client';
-import { hydratePolicyRecord } from './hydrator';
 import { buildKnowledgeBase } from './kb-builder';
 
 // ─── Bootstrap ────────────────────────────────────────────────────────────────
@@ -113,48 +112,6 @@ server.tool(
         {
           type: 'text',
           text: JSON.stringify(results, null, 2),
-        },
-      ],
-    };
-  }
-);
-
-// ── Tool: hydrate_db ─────────────────────────────────────────────────────────
-server.tool(
-  'hydrate_db',
-  'Stores one or more policy metadata records directly into the local SQLite database. Use this to persist data fetched from msgraph-kb or other MCP sources so that future lookups are served from the local cache. The LLM workflow: call msgraph-kb (search_graph_apis / get_api_details), then call this tool with the results.',
-  {
-    policies: z.array(
-      z.object({
-        csp_key: z.string().describe('Normalised underscore-delimited CSP key (device_vendor_msft_ prefix is stripped automatically)'),
-        name: z.string().describe('Human-readable policy name'),
-        description: z.string().optional().default('').describe('What the setting does'),
-        csp_path: z.string().describe('Canonical OMA-URI path, e.g. ./Device/Vendor/MSFT/Policy/Config/Defender/AttackSurfaceReductionRules'),
-        category: z.string().optional().default('').describe('Policy area, e.g. "Defender ASR", "BitLocker", "LAPS"'),
-        docs_url: z.string().optional().default('').describe('Link to Microsoft documentation'),
-        value_map: z.record(z.string(), z.string()).optional().default({}).describe('Map of raw values to human-readable labels, e.g. {"0":"Disabled","1":"Block","2":"Audit"}'),
-      })
-    ).min(1).describe('One or more policy records to store'),
-  },
-  async ({ policies }) => {
-    let stored = 0;
-    for (const p of policies) {
-      hydratePolicyRecord({
-        normalized_key: normalizeKey(p.csp_key),
-        name: p.name,
-        description: p.description,
-        csp_path: p.csp_path,
-        category: p.category,
-        docs_url: p.docs_url,
-        value_map: JSON.stringify(p.value_map),
-      });
-      stored++;
-    }
-    return {
-      content: [
-        {
-          type: 'text',
-          text: JSON.stringify({ stored, message: `Successfully stored ${stored} policy record(s) in the database.` }, null, 2),
         },
       ],
     };
