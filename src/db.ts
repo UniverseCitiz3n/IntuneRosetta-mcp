@@ -106,11 +106,44 @@ export function findByCspPathFragment(fragment: string, limit = 20): PolicyRecor
   `).all(pattern, pattern, limit) as PolicyRecord[];
 }
 
+/**
+ * Load the pre-built Intune policy knowledge base from `db/intune-policies.json`.
+ *
+ * This JSON file was built at development time by querying the Microsoft Graph API
+ * (via Lokka and msgraph-kb MCP tools) and is committed to the repository so the
+ * server starts with a fully populated KB — no runtime Graph API connection required.
+ */
+function loadPrebuiltKb(): Array<Omit<PolicyRecord, 'id'>> {
+  // Works from dist/ (compiled) or src/ (ts-node): resolve relative to this file's dir
+  const candidates = [
+    path.join(__dirname, '..', 'db', 'intune-policies.json'),
+    path.join(__dirname, '..', '..', 'db', 'intune-policies.json'),
+  ];
+  for (const p of candidates) {
+    if (fs.existsSync(p)) {
+      try {
+        const raw = fs.readFileSync(p, 'utf-8');
+        const parsed = JSON.parse(raw) as { records: Array<Omit<PolicyRecord, 'id'>> };
+        return parsed.records ?? [];
+      } catch (err) {
+        // JSON parse / file-read error for this candidate — try the next path
+        process.stderr?.write?.(`[IntuneRosetta] Warning: failed to load ${p}: ${err}\n`);
+      }
+    }
+  }
+  return [];
+}
+
 export function seedDatabase(): void {
   const database = getDb();
   const count = (database.prepare('SELECT COUNT(*) as c FROM policies').get() as { c: number }).c;
   if (count > 0) return;
 
+  // Load the pre-built KB data (built from Microsoft Graph API via Lokka/msgraph-kb)
+  const kbData = loadPrebuiltKb();
+
+  // Built-in hand-curated seed data — these take precedence over the pre-built KB
+  // because they carry precise names, full descriptions and detailed value maps.
   const seedData: Array<Omit<PolicyRecord, 'id'>> = [
     // ─── Defender ASR Rules ───────────────────────────────────────────────────
     {
@@ -493,5 +526,9 @@ export function seedDatabase(): void {
     }
   });
 
+  // Insert pre-built KB first, then hand-curated data on top.
+  // upsertPolicy uses INSERT … ON CONFLICT DO UPDATE, so the second insertMany
+  // overwrites any overlapping keys with the more precise hand-curated values.
+  insertMany(kbData);
   insertMany(seedData);
 }

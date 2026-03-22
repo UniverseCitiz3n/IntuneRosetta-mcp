@@ -115,9 +115,9 @@ describe('translateKey (integration)', () => {
   });
 
   it('returns best-effort metadata for unknown key', () => {
-    const result = translateKey('device_vendor_msft_policy_config_privacy_letappsaccesscamera_0');
+    const result = translateKey('device_vendor_msft_policy_config_xyznotexist_completelyfakeunknownsetting_0');
     assert.equal(result.category, 'Unknown');
-    assert.ok(result.csp_path.includes('Policy/Config/Privacy'));
+    assert.ok(result.csp_path.includes('Policy/Config'));
     assert.equal(result.value, '0');
   });
 
