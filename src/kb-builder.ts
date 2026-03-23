@@ -63,6 +63,8 @@ function inferCategory(normalizedKey: string, graphPath: string): string {
   const k = normalizedKey.toLowerCase();
   const g = graphPath.toLowerCase();
 
+  if (k.startsWith('device_vendor_msft_defender_configuration')) return 'Defender Configuration';
+  if (k.startsWith('device_vendor_msft_policy_config_admx')) return 'ADMX';
   if (k.includes('attacksurface') || k.includes('asr')) return 'Defender ASR';
   if (k.includes('defender') || g.includes('defender')) return 'Defender';
   if (k.includes('bitlocker') || g.includes('bitlocker') || g.includes('encryption')) return 'BitLocker';
