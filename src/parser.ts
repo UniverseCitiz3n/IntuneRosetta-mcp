@@ -1,4 +1,4 @@
-import { PolicyMetadata, PolicyRecord, ValueMap } from './types';
+import { PolicyMetadata, PolicyOption, PolicyRecord, ValueMap } from './types';
 import { findByKey, upsertPolicy } from './db';
 
 const MSFT_PREFIX = 'device_vendor_msft_';
@@ -68,6 +68,45 @@ export function reconstructCspPath(normalizedKey: string): string {
 }
 
 /**
+ * Derive the full Intune settingDefinitionId from a stored normalized_key.
+ *
+ * Records from the pre-built KB already carry the full key
+ * (e.g. "device_vendor_msft_policy_config_admx_..."), while hand-curated
+ * records use a stripped form (e.g. "policy_config_defender_...").
+ * In both cases the Intune settingDefinitionId is the full key with the
+ * "device_vendor_msft_" prefix present.
+ */
+function settingDefinitionId(normalizedKey: string): string {
+  return normalizedKey.startsWith(MSFT_PREFIX) ? normalizedKey : `${MSFT_PREFIX}${normalizedKey}`;
+}
+
+/**
+ * Build the list of available options for a policy setting from its value_map.
+ *
+ * Each option carries:
+ *  - itemId     — the full Intune choice value key (settingDefinitionId + "_" + optionKey)
+ *  - displayName — the human-readable option label stored in the value map
+ *
+ * Returns undefined when the value map is empty (no discrete options defined).
+ */
+export function buildOptions(record: PolicyRecord): PolicyOption[] | undefined {
+  let map: ValueMap = {};
+  try {
+    map = JSON.parse(record.value_map) as ValueMap;
+  } catch {
+    return undefined;
+  }
+  const entries = Object.entries(map);
+  if (entries.length === 0) return undefined;
+
+  const defId = settingDefinitionId(record.normalized_key);
+  return entries.map(([key, displayName]) => ({
+    itemId: `${defId}_${key}`,
+    displayName,
+  }));
+}
+
+/**
  * Resolve a value string against a value map.
  * Returns a descriptive string if found, otherwise returns the raw value.
  */
@@ -93,6 +132,7 @@ export function buildMetadata(record: PolicyRecord, valueSegment: string | undef
     csp_path: record.csp_path,
     category: record.category,
     docs_url: record.docs_url,
+    options: buildOptions(record),
   };
 }
 
@@ -102,7 +142,9 @@ export function buildMetadata(record: PolicyRecord, valueSegment: string | undef
  * Lookup order:
  *  1. Exact match on normalised key (with value segment stripped)
  *  2. Exact match on full normalised key (value segment included)
- *  3. Return a "best-effort" reconstruction from the key itself
+ *  3. Exact match with "device_vendor_msft_" prefix re-added (pre-built KB
+ *     records store the full Intune settingDefinitionId as their key)
+ *  4. Return a "best-effort" reconstruction from the key itself
  */
 export function translateKey(raw: string): PolicyMetadata {
   const normalised = normalizeKey(raw);
@@ -118,6 +160,16 @@ export function translateKey(raw: string): PolicyMetadata {
   record = findByKey(normalised);
   if (record) {
     return buildMetadata(record, undefined);
+  }
+
+  // Try with the "device_vendor_msft_" prefix re-added.
+  // Pre-built KB records store the full Intune settingDefinitionId as their
+  // normalized_key (e.g. "device_vendor_msft_policy_config_admx_...") while
+  // the normalizeKey() helper strips that prefix for callers. We therefore
+  // retry with the prefix so those records are always reachable.
+  record = findByKey(`${MSFT_PREFIX}${baseKey}`);
+  if (record) {
+    return buildMetadata(record, valueSegment);
   }
 
   // Best-effort: reconstruct from the key structure
