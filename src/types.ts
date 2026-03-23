@@ -1,3 +1,8 @@
+export interface PolicyOption {
+  itemId: string;
+  displayName: string;
+}
+
 export interface PolicyMetadata {
   name: string;
   description: string;
@@ -5,6 +10,7 @@ export interface PolicyMetadata {
   csp_path: string;
   category: string;
   docs_url: string;
+  options?: PolicyOption[];
 }
 
 export interface PolicyRecord {

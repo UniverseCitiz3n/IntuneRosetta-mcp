@@ -1,7 +1,8 @@
 import { describe, it, before } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeKey, splitValueSegment, translateKey, resolveValue, reconstructCspPath } from '../parser';
+import { normalizeKey, splitValueSegment, translateKey, resolveValue, reconstructCspPath, buildOptions } from '../parser';
 import { seedDatabase, searchPolicies, findByKey } from '../db';
+import { PolicyRecord } from '../types';
 
 // Use an in-memory / temp database for tests
 process.env['NODE_ENV'] = 'test';
@@ -75,6 +76,71 @@ describe('resolveValue', () => {
   });
 });
 
+describe('buildOptions', () => {
+  it('returns options with full itemIds for a record with numeric value_map', () => {
+    const record: PolicyRecord = {
+      normalized_key: 'policy_config_defender_puaprotection',
+      name: 'PUA Protection',
+      description: '',
+      csp_path: './Device/Vendor/MSFT/Policy/Config/Defender/PUAProtection',
+      category: 'Defender',
+      docs_url: '',
+      value_map: JSON.stringify({ '0': 'Disabled', '1': 'Block', '2': 'Audit' }),
+    };
+    const opts = buildOptions(record);
+    assert.ok(Array.isArray(opts));
+    assert.equal(opts!.length, 3);
+    assert.deepEqual(opts![0], {
+      itemId: 'device_vendor_msft_policy_config_defender_puaprotection_0',
+      displayName: 'Disabled',
+    });
+    assert.deepEqual(opts![1], {
+      itemId: 'device_vendor_msft_policy_config_defender_puaprotection_1',
+      displayName: 'Block',
+    });
+  });
+
+  it('preserves the device_vendor_msft_ prefix when already present in normalized_key', () => {
+    const record: PolicyRecord = {
+      normalized_key:
+        'device_vendor_msft_policy_config_admx_microsoftdefenderantivirus_scan_disablescanningnetworkfiles',
+      name: 'Configure scanning of network files',
+      description: '',
+      csp_path:
+        './Device/Vendor/MSFT/Policy/Config/ADMX_MicrosoftDefenderAntivirus/Scan_DisableScanningNetworkFiles',
+      category: 'ADMX',
+      docs_url: '',
+      value_map: JSON.stringify({ '0': 'Disabled', '1': 'Enabled' }),
+    };
+    const opts = buildOptions(record);
+    assert.ok(Array.isArray(opts));
+    assert.equal(opts!.length, 2);
+    assert.equal(
+      opts![0].itemId,
+      'device_vendor_msft_policy_config_admx_microsoftdefenderantivirus_scan_disablescanningnetworkfiles_0'
+    );
+    assert.equal(opts![0].displayName, 'Disabled');
+    assert.equal(
+      opts![1].itemId,
+      'device_vendor_msft_policy_config_admx_microsoftdefenderantivirus_scan_disablescanningnetworkfiles_1'
+    );
+    assert.equal(opts![1].displayName, 'Enabled');
+  });
+
+  it('returns undefined for an empty value_map', () => {
+    const record: PolicyRecord = {
+      normalized_key: 'policy_config_defender_allowrealtimemonitoring',
+      name: 'Allow Real-Time Monitoring',
+      description: '',
+      csp_path: './Device/Vendor/MSFT/Policy/Config/Defender/AllowRealTimeMonitoring',
+      category: 'Defender',
+      docs_url: '',
+      value_map: '{}',
+    };
+    assert.equal(buildOptions(record), undefined);
+  });
+});
+
 describe('reconstructCspPath', () => {
   it('reconstructs policy_config_ prefix correctly', () => {
     const path = reconstructCspPath('policy_config_defender_allowrealtimemonitoring');
@@ -125,6 +191,58 @@ describe('translateKey (integration)', () => {
     const result = translateKey('device_vendor_msft_policy_config_defender_allowrealtimemonitoring');
     assert.equal(result.category, 'Defender');
     assert.equal(result.value, 'Not specified');
+  });
+
+  it('translates an ADMX policy key with value suffix (pre-built KB record)', () => {
+    const result = translateKey(
+      'device_vendor_msft_policy_config_admx_microsoftdefenderantivirus_scan_disablescanningnetworkfiles_0'
+    );
+    assert.equal(result.category, 'ADMX');
+    assert.equal(result.value, 'Disabled');
+    assert.ok(result.name.toLowerCase().includes('scan'));
+    assert.ok(Array.isArray(result.options));
+    const opt = result.options!.find((o) => o.itemId.endsWith('_0'));
+    assert.ok(opt !== undefined);
+    assert.equal(opt!.displayName, 'Disabled');
+  });
+
+  it('includes options with full itemIds for an ADMX base key', () => {
+    const result = translateKey(
+      'device_vendor_msft_policy_config_admx_microsoftdefenderantivirus_scan_disablescanningnetworkfiles'
+    );
+    assert.equal(result.category, 'ADMX');
+    assert.equal(result.value, 'Not specified');
+    assert.ok(Array.isArray(result.options) && result.options!.length >= 2);
+    const itemIds = result.options!.map((o) => o.itemId);
+    assert.ok(
+      itemIds.includes(
+        'device_vendor_msft_policy_config_admx_microsoftdefenderantivirus_scan_disablescanningnetworkfiles_0'
+      )
+    );
+    assert.ok(
+      itemIds.includes(
+        'device_vendor_msft_policy_config_admx_microsoftdefenderantivirus_scan_disablescanningnetworkfiles_1'
+      )
+    );
+  });
+
+  it('includes options with full itemIds for a hand-curated ASR rule', () => {
+    const result = translateKey(
+      'device_vendor_msft_policy_config_defender_attacksurfacereductionrules_blockexecutionofpotentiallyobfuscatedscripts'
+    );
+    assert.equal(result.category, 'Defender ASR');
+    assert.ok(Array.isArray(result.options) && result.options!.length >= 3);
+    const itemIds = result.options!.map((o) => o.itemId);
+    assert.ok(
+      itemIds.includes(
+        'device_vendor_msft_policy_config_defender_attacksurfacereductionrules_blockexecutionofpotentiallyobfuscatedscripts_0'
+      )
+    );
+    assert.ok(
+      itemIds.includes(
+        'device_vendor_msft_policy_config_defender_attacksurfacereductionrules_blockexecutionofpotentiallyobfuscatedscripts_1'
+      )
+    );
   });
 });
 
