@@ -148,6 +148,9 @@ export function buildMetadata(record: PolicyRecord, valueSegment: string | undef
       warning += ` ${record.deprecation_notice}`;
     }
     result.deprecation_warning = warning;
+    result.is_deprecated = true;
+    result.replaced_by_csp = record.replaced_by_csp;
+    result.deprecation_notice = record.deprecation_notice;
   }
 
   return result;

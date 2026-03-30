@@ -132,6 +132,18 @@ describe('extractCspPaths', () => {
     assert.ok(paths.includes('policy_config_defender_allowrealtimemonitoring'), `got: ${JSON.stringify(paths)}`);
   });
 
+  it('handles vendor_msft_ prefix in Intune export keys', () => {
+    const text = 'vendor_msft_laps_policies_backupdirectory = 1';
+    const paths = extractCspPaths(text);
+    assert.ok(paths.includes('laps_policies_backupdirectory'), `got: ${JSON.stringify(paths)}`);
+  });
+
+  it('handles user_vendor_msft_ prefix in Intune export keys', () => {
+    const text = 'user_vendor_msft_policy_config_start_hideshutdown = 1';
+    const paths = extractCspPaths(text);
+    assert.ok(paths.includes('policy_config_start_hideshutdown'), `got: ${JSON.stringify(paths)}`);
+  });
+
   it('returns empty array for text with no CSP paths', () => {
     const paths = extractCspPaths('Hello world, no policies here.');
     assert.equal(paths.length, 0);

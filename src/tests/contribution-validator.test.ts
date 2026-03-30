@@ -45,7 +45,8 @@ after(() => {
 
 describe('validate-contributions.js', () => {
   it('exits 0 when the contributions directory does not exist', () => {
-    const result = runValidator('/tmp/nonexistent-dir-xyzxyz');
+    const nonexistentDir = path.join(os.tmpdir(), `intune-contrib-nonexistent-${Math.random().toString(36).slice(2)}`);
+    const result = runValidator(nonexistentDir);
     assert.equal(result.status, 0);
     assert.ok(result.stdout.includes('No contributions directory'));
   });
@@ -236,5 +237,24 @@ describe('validate-contributions.js', () => {
     fs.writeFileSync(path.join(dir, 'bad.json'), '{ not valid json ]', 'utf-8');
     const result = runValidator(dir);
     assert.equal(result.status, 1);
+  });
+
+  it('exits 1 when is_deprecated=true but replaced_by_csp is missing', () => {
+    const dir = makeTempDir({
+      'deprecated-no-replacement.json': [
+        {
+          normalized_key: 'test_zzz_deprecated_noreplacement_9999',
+          name: 'Deprecated Without Replacement',
+          csp_path: './Device/Vendor/MSFT/Policy/Config/Test/DeprecatedNoReplacement',
+          category: 'Test',
+          is_deprecated: true,
+          deprecation_notice: 'Deprecated but no replacement key provided.',
+          // replaced_by_csp is intentionally omitted
+        },
+      ],
+    });
+    tempDirs.push(dir);
+    const result = runValidator(dir);
+    assert.equal(result.status, 1, `expected failure but got stdout: ${result.stdout}`);
   });
 });

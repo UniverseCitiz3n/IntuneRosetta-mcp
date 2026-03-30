@@ -40,8 +40,8 @@ export function cspPathToNormalizedKey(cspPath: string): string {
 const CSP_PATH_REGEX = /(?:\.[\\/])?(?:Device|User)\/Vendor\/MSFT\/[^\s"'<>,;)\]]+/g;
 
 // Regex matching already-normalised underscore-form keys as produced by Intune exports.
-// e.g. device_vendor_msft_policy_config_defender_allowrealtimemonitoring
-const CSP_KEY_REGEX = /\bdevice_vendor_msft_[a-z0-9_]+/g;
+// Supports all known MSFT vendor prefixes that `normalizeKey` can strip.
+const CSP_KEY_REGEX = /\b(?:device_vendor_msft_|user_vendor_msft_|vendor_msft_)[a-z0-9_]+/g;
 
 /**
  * Extract all OMA-URI / CSP paths from a block of text and return them as an
@@ -64,8 +64,8 @@ export function extractCspPaths(text: string): string[] {
   // We only replace backslashes that are inside what looks like a path
   // context (after Device/User prefix or after a dot-backslash prefix).
   const normalised = decoded
-    .replace(/\.\\/g, './')          // .\Device → ./Device
-    .replace(/(?<=(?:Device|User|MSFT|[A-Za-z0-9]))\\/g, '/'); // mid-path backslashes
+    .replace(/\.\\/g, './')                               // .\Device → ./Device
+    .replace(/(Device|User|MSFT|[A-Za-z0-9])\\/g, '$1/'); // mid-path backslashes
 
   const seen = new Set<string>();
   const results: string[] = [];
