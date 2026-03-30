@@ -11,6 +11,10 @@ export interface PolicyMetadata {
   category: string;
   docs_url: string;
   options?: PolicyOption[];
+  deprecation_warning?: string;  // human-readable deprecation message, if any
+  is_deprecated?: boolean;       // true when the policy has been superseded
+  replaced_by_csp?: string;      // normalized_key of the replacement policy
+  deprecation_notice?: string;   // free-text: why deprecated, context, date if known
 }
 
 export interface PolicyRecord {
@@ -22,6 +26,9 @@ export interface PolicyRecord {
   category: string;
   docs_url: string;
   value_map: string; // JSON string: Record<string, string>
+  is_deprecated?: boolean;      // true when the policy has been superseded
+  replaced_by_csp?: string;     // normalized_key of the replacement record
+  deprecation_notice?: string;  // free-text: why deprecated, context, date if known
 }
 
 export type ValueMap = Record<string, string>;

@@ -99,6 +99,8 @@ In your repository's **Settings → Copilot → MCP servers**, add:
 | `batch_translate` | `keys` (string[]) | Translates an array of CSP path strings in one call |
 | `search_policy` | `query` (string), `limit` (number, optional) | Fuzzy keyword search across the policy database by name, description, category, or CSP path fragment |
 | `resolve_to_csp` | `query` (string), `limit` (number, optional) | Resolves a human-readable policy name or keyword to matching CSP key(s) and full metadata |
+| `extract_and_translate` | `text` (string) | Extracts all OMA-URI/CSP paths from a block of freeform text (Event Viewer XML, MDM diagnostic output, JSON exports, log files) and translates each one. Returns resolved policy metadata and a list of unrecognised paths |
+| `suggest_policy` | `goal` (string), `context` (string, optional), `limit` (number, optional) | Given a plain-English security or configuration goal, returns matching CSP policies with recommended production values and reasoning |
 | `refresh_kb` | `force` (boolean, optional) | Rebuilds the local KB by querying msgraph-kb with all predefined search terms. Requires `MSGRAPH_KB_COMMAND` to be set |
 
 ---
@@ -218,6 +220,22 @@ At startup the server seeds an in-memory **SQLite database** from a pre-built kn
 When a `translate_csp_key` or `search_policy` call arrives, the server looks up the normalized key in SQLite, attaches the decoded value label, and returns structured `PolicyMetadata`.
 
 If `MSGRAPH_KB_COMMAND` is configured, a background KB build queries the [msgraph-kb MCP server](https://github.com/UniverseCitiz3n/msgraph-kb-mcp) with 20 predefined Intune-related search terms and upserts any new results into the local database — no manual curation required for Graph API endpoints.
+
+---
+
+## Contributing to the DB
+
+The pre-built knowledge base lives in `db/intune-policies.json`.  If you know
+of a missing or incorrect policy record you can contribute it via a pull
+request — see **[db/CONTRIBUTING.md](db/CONTRIBUTING.md)** for full
+instructions, field definitions, and validation rules.
+
+In short:
+
+1. Copy `db/contribution-template.json` → `db/contributions/<your-file>.json`
+2. Fill in your records (required: `normalized_key`, `name`, `csp_path`, `category`)
+3. Run `node scripts/validate-contributions.js` locally to check for errors
+4. Open a PR — CI validates the file automatically
 
 ---
 
