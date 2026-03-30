@@ -1,0 +1,27 @@
+name: Validate Contributions
+
+on:
+  pull_request:
+    paths:
+      - 'db/contributions/**'
+
+jobs:
+  validate:
+    name: Validate contribution files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate contribution files
+        run: node scripts/validate-contributions.js

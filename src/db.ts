@@ -52,27 +52,52 @@ function initSchema(): void {
       csp_path TEXT NOT NULL,
       category TEXT NOT NULL DEFAULT '',
       docs_url TEXT NOT NULL DEFAULT '',
-      value_map TEXT NOT NULL DEFAULT '{}'
+      value_map TEXT NOT NULL DEFAULT '{}',
+      is_deprecated INTEGER NOT NULL DEFAULT 0,
+      replaced_by_csp TEXT NOT NULL DEFAULT '',
+      deprecation_notice TEXT NOT NULL DEFAULT ''
     );
     CREATE INDEX IF NOT EXISTS idx_policies_name ON policies(name COLLATE NOCASE);
     CREATE INDEX IF NOT EXISTS idx_policies_category ON policies(category);
   `);
+
+  // Migration: add deprecation columns to existing databases that predate this schema
+  const existingCols = (database.pragma('table_info(policies)') as Array<{ name: string }>).map(
+    (c) => c.name,
+  );
+  if (!existingCols.includes('is_deprecated')) {
+    database.exec('ALTER TABLE policies ADD COLUMN is_deprecated INTEGER NOT NULL DEFAULT 0');
+  }
+  if (!existingCols.includes('replaced_by_csp')) {
+    database.exec("ALTER TABLE policies ADD COLUMN replaced_by_csp TEXT NOT NULL DEFAULT ''");
+  }
+  if (!existingCols.includes('deprecation_notice')) {
+    database.exec("ALTER TABLE policies ADD COLUMN deprecation_notice TEXT NOT NULL DEFAULT ''");
+  }
 }
 
 export function upsertPolicy(record: Omit<PolicyRecord, 'id'>): void {
   const database = getDb();
   const stmt = database.prepare(`
-    INSERT INTO policies (normalized_key, name, description, csp_path, category, docs_url, value_map)
-    VALUES (@normalized_key, @name, @description, @csp_path, @category, @docs_url, @value_map)
+    INSERT INTO policies (normalized_key, name, description, csp_path, category, docs_url, value_map, is_deprecated, replaced_by_csp, deprecation_notice)
+    VALUES (@normalized_key, @name, @description, @csp_path, @category, @docs_url, @value_map, @is_deprecated, @replaced_by_csp, @deprecation_notice)
     ON CONFLICT(normalized_key) DO UPDATE SET
       name = excluded.name,
       description = excluded.description,
       csp_path = excluded.csp_path,
       category = excluded.category,
       docs_url = excluded.docs_url,
-      value_map = excluded.value_map
+      value_map = excluded.value_map,
+      is_deprecated = excluded.is_deprecated,
+      replaced_by_csp = excluded.replaced_by_csp,
+      deprecation_notice = excluded.deprecation_notice
   `);
-  stmt.run(record);
+  stmt.run({
+    ...record,
+    is_deprecated: record.is_deprecated ? 1 : 0,
+    replaced_by_csp: record.replaced_by_csp ?? '',
+    deprecation_notice: record.deprecation_notice ?? '',
+  });
 }
 
 export function findByKey(normalizedKey: string): PolicyRecord | undefined {

@@ -3,19 +3,23 @@ import { findByKey, upsertPolicy } from './db';
 
 const MSFT_PREFIX = 'device_vendor_msft_';
 const MSFT_PREFIX_SHORT = 'vendor_msft_';
+const USER_PREFIX = 'user_vendor_msft_';
 
 /**
  * Normalise a raw underscore-delimited OMA-URI key into a consistent DB key.
  *
  * Steps:
  *  1. Lowercase everything
- *  2. Strip leading "device_vendor_msft_" or "vendor_msft_" prefix
+ *  2. Strip leading "device_vendor_msft_", "user_vendor_msft_", or "vendor_msft_" prefix
  *  3. The resulting string is the normalised key used for DB lookups
  */
 export function normalizeKey(raw: string): string {
   const lower = raw.toLowerCase().trim();
   if (lower.startsWith(MSFT_PREFIX)) {
     return lower.slice(MSFT_PREFIX.length);
+  }
+  if (lower.startsWith(USER_PREFIX)) {
+    return lower.slice(USER_PREFIX.length);
   }
   if (lower.startsWith(MSFT_PREFIX_SHORT)) {
     return lower.slice(MSFT_PREFIX_SHORT.length);
@@ -125,7 +129,7 @@ export function resolveValue(valueSegment: string | undefined, valueMapJson: str
  * Build a PolicyMetadata object from a PolicyRecord + optional value segment.
  */
 export function buildMetadata(record: PolicyRecord, valueSegment: string | undefined): PolicyMetadata {
-  return {
+  const result: PolicyMetadata = {
     name: record.name,
     description: record.description,
     value: resolveValue(valueSegment, record.value_map),
@@ -134,6 +138,19 @@ export function buildMetadata(record: PolicyRecord, valueSegment: string | undef
     docs_url: record.docs_url,
     options: buildOptions(record),
   };
+
+  if (record.is_deprecated) {
+    let warning = 'This policy is deprecated.';
+    if (record.replaced_by_csp) {
+      warning += ` Use '${record.replaced_by_csp}' instead.`;
+    }
+    if (record.deprecation_notice) {
+      warning += ` ${record.deprecation_notice}`;
+    }
+    result.deprecation_warning = warning;
+  }
+
+  return result;
 }
 
 /**

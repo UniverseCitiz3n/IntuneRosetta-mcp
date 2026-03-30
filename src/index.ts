@@ -7,6 +7,8 @@ import { translateKey, normalizeKey, splitValueSegment, buildMetadata } from './
 import { PolicyMetadata } from './types';
 import { msgraphKbClient } from './msgraph-client';
 import { buildKnowledgeBase } from './kb-builder';
+import { extractAndTranslate } from './extractor';
+import { suggestPolicies } from './suggestor';
 
 // ─── Bootstrap ────────────────────────────────────────────────────────────────
 seedDatabase();
@@ -156,9 +158,50 @@ server.tool(
   }
 );
 
+// ── Tool: extract_and_translate ──────────────────────────────────────────────
+server.tool(
+  'extract_and_translate',
+  'Extracts all OMA-URI/CSP paths from a block of text (logs, XML, JSON, Event Viewer dumps) and translates each one. Returns resolved policy metadata and a list of unrecognized paths.',
+  {
+    text: z.string().describe('Freeform text to scan for OMA-URI/CSP paths (Event Viewer XML, MDM diagnostic output, raw JSON export, log files, etc.)'),
+  },
+  async ({ text }) => {
+    const result = extractAndTranslate(text);
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(result, null, 2),
+        },
+      ],
+    };
+  }
+);
+
+// ── Tool: suggest_policy ─────────────────────────────────────────────────────
+server.tool(
+  'suggest_policy',
+  "Given a plain-English security or configuration goal (e.g. 'block USB storage on kiosk devices'), returns matching CSP policies with recommended production values and reasoning.",
+  {
+    goal: z.string().describe("Plain-English security or configuration goal, e.g. 'block USB storage on kiosk devices', 'require BitLocker on all laptops'"),
+    context: z.string().optional().describe("Optional: device type, OS, environment (e.g. 'Windows 11 shared kiosk, no user accounts')"),
+    limit: z.number().int().min(1).max(20).optional().default(5).describe('Maximum number of suggestions to return (default 5)'),
+  },
+  async ({ goal, context, limit }) => {
+    const result = suggestPolicies(goal, context, limit);
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(result, null, 2),
+        },
+      ],
+    };
+  }
+);
+
 // ─── Cleanup on shutdown ──────────────────────────────────────────────────────
 process.on('SIGINT', () => { msgraphKbClient.close().finally(() => process.exit(0)); });
-process.on('SIGTERM', () => { msgraphKbClient.close().finally(() => process.exit(0)); });
 
 // ─── Start ────────────────────────────────────────────────────────────────────
 async function main(): Promise<void> {
