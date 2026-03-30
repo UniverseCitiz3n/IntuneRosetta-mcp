@@ -202,6 +202,7 @@ server.tool(
 
 // ─── Cleanup on shutdown ──────────────────────────────────────────────────────
 process.on('SIGINT', () => { msgraphKbClient.close().finally(() => process.exit(0)); });
+process.on('SIGTERM', () => { msgraphKbClient.close().finally(() => process.exit(0)); });
 
 // ─── Start ────────────────────────────────────────────────────────────────────
 async function main(): Promise<void> {
